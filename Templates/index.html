@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <header class="bg-primary-gradient">
+        <div class="container pt-4 pt-xl-5">
+            <div class="row pt-5">
+                <div class="col-md-8 col-xl-6 text-center text-md-start mx-auto">
+                    <div class="text-center">
+                        <p class="fw-bold text-success mb-2">Voted #1 Worldwide</p>
+                        <h1 class="fw-bold">The best solution for you and your customers</h1>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-10 mx-auto">
+                    <div class="position-relative" style="display: flex;flex-wrap: wrap;justify-content: flex-end;">
+                        <div style="position: relative;flex: 0 0 45%;transform: translate3d(-15%, 35%, 0);"><img class="img-fluid" data-bss-parallax="" data-bss-parallax-speed="0.8" src="{% static 'img/products/3.jpg' %}"></div>
+                        <div style="position: relative;flex: 0 0 45%;transform: translate3d(-5%, 20%, 0);"><img class="img-fluid" data-bss-parallax="" data-bss-parallax-speed="0.4" src="{% static 'img/products/2.jpg' %}"></div>
+                        <div style="position: relative;flex: 0 0 60%;transform: translate3d(0, 0%, 0);"><img class="img-fluid" data-bss-parallax="" data-bss-parallax-speed="0.25" src="{% static 'img/products/1.jpg' %}"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <section class="py-5" style="margin-top: -35px;padding-top: 0px;padding-bottom: 131px;margin-bottom: -96px;">
+        <div class="container text-center py-5" style="margin-bottom: -113px;margin-top: -31px;">
+            <p class="mb-4" style="font-size: 1.6rem;padding-top: 20px;">Best products! Best production!</p><a href="#"> </a><a href="#"> </a><a href="#"> </a><a href="#"> </a><a href="#"> </a><a href="#"> </a>
+        </div>
+    </section>
+    <section class="py-5 mt-5">
+        <div class="container py-5">
+            <div class="row mb-5">
+                <div class="col-md-8 col-xl-6 text-center mx-auto">
+                    <p class="fw-bold text-success mb-2">Testimonials</p>
+                    <h2 class="fw-bold"><strong>What People Say About us</strong></h2>
+                    <p class="text-muted">No matter the project, our team can handle it.&nbsp;</p>
+                </div>
+            </div>
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 d-sm-flex justify-content-sm-center">
+                <div class="col mb-4">
+                    <div class="d-flex flex-column align-items-center align-items-sm-start">
+                        <p class="bg-light border rounded border-light p-4">I get the best type of hardware products from this website. Espcially, the ones I need with customisations.</p>
+                        <div class="d-flex"><img class="rounded-circle flex-shrink-0 me-3 fit-cover" width="50" height="50" src="{% static 'img/team/avatar2.jpg' %}">
+                            <div>
+                                <p class="fw-bold text-primary mb-0">John Smith</p>
+                                <p class="text-muted mb-0">Hardware Store owner</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col mb-4">
+                    <div class="d-flex flex-column align-items-center align-items-sm-start">
+                        <p class="bg-light border rounded border-light p-4">I order all types of products for my podcast show to surprise the guests! So far, only happy guests!</p>
+                        <div class="d-flex"><img class="rounded-circle flex-shrink-0 me-3 fit-cover" width="50" height="50" src="{% static 'img/team/avatar4.jpg' %}">
+                            <div>
+                                <p class="fw-bold text-primary mb-0">Joe Rogan</p>
+                                <p class="text-muted mb-0">Podcast creator</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col mb-4">
+                    <div class="d-flex flex-column align-items-center align-items-sm-start">
+                        <p class="bg-light border rounded border-light p-4">Although I never ordered anything from this website, I just really like the frontend.</p>
+                        <div class="d-flex"><img class="rounded-circle flex-shrink-0 me-3 fit-cover" width="50" height="50" src="{% static 'img/team/avatar5.jpg' %}">
+                            <div>
+                                <p class="fw-bold text-primary mb-0">Ava Adams</p>
+                                <p class="text-muted mb-0">Does nothing all day</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/bs-init.js' %}"></script>
+    <script src="{% static 'js/bold-and-bright.js'%}"></script>
+{% endblock %}

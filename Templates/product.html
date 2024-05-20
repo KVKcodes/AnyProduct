@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <section class="py-5">
+        <div class="container py-5">
+            <div data-reflow-type="product" data-bss-dynamic-product data-bss-dynamic-product-param="product" data-reflow-shoppingcart-url="shopping-cart.html">
+                <div class="reflow-product">
+                    <div class="ref-media">
+                        <div class="ref-preview"><img class="ref-image active" src="{{product.image}}" data-reflow-preview-type="image" /></div>
+                        <div class="ref-sale-badge">SALE</div>
+                    </div>
+                    <div class="ref-product-data">
+                        <h2 id="star-rating">{{product.rating}}</h2>
+                        <h2 class="ref-name">{{product.name}}</h2>
+                        <div class="ref-categories"><span class="ref-category">{{product.weight}}</span><strong><span class="ref-category">{{product.brand}}</span></strong></div><strong class="ref-price ref-on-sale"><s class="ref-original-price">${{product.price}}</s>$<span class="discounter">{{product.price}}</span></strong><span data-reflow-type="add-to-cart" data-reflow-shoppingcart-url="shopping-cart.html" data-reflow-addtocart-text data-reflow-product="589605485" data-reflow-variant="199976733_s">
+                            <form action="{% url 'add_cart' %}" method="post">
+                                {% csrf_token %}
+                                <div class="reflow-add-to-cart ref-product-controls">
+                                    <div class="ref-variant"><label><span>Size</span><select class="ref-form-control ref-field-variants" name="size" required>
+                                                <option value="S">S</option>
+                                                <option value="M">M</option>
+                                                <option value="L">L</option>
+                                            </select></label>
+                                    </div>
+                                    <span data-reflow-variant="199976733_s" data-reflow-product="589605485" data-reflow-max-qty="999" data-reflow-quantity="1">
+                                        <div class="ref-quantity-widget">
+                                            <div class="ref-decrease"><span></span></div><input type="text" id="quantity" name="product_quantity" value="1" style="width: 3.5rem !important" />
+                                            <div class="ref-increase"><span></span></div>
+                                        </div>
+                                    </span>
+                                        <input type="hidden" name="product_name" value="{{product.name}}" readonly>
+                                        <input type="hidden" name="product_price" value="{{product.price}}" readonly>
+                                        <input type="hidden" name="product_description" value="{{product.description}}" readonly>
+                                        <input type="hidden" name="product_size" value="{{product.size}}" readonly>
+                                        <input type="hidden" name="product_image" value="{{product.image}}" readonly>
+                                        <input type="hidden" name="product_brand" value="{{product.brand}}" readonly>
+                                        <button class="ref-button" type="submit" style="border: none;">Add to Cart</button>
+                                </div>
+                            </form>
+                        </span>
+                        <div class="ref-description">{{product.description}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="https://cdn.reflowhq.com/v2/toolkit.min.js"></script>
+    <script src="{% static 'js/bs-init.js' %}"></script>
+    <script src="{% static 'js/bold-and-bright.js' %}"></script>
+
+    <script>
+        //script to handle star rating
+        document.addEventListener("DOMContentLoaded", function() {
+            var discountedSpans = document.getElementsByClassName("discounter");
+            for (var i = 0; i < discountedSpans.length; i++) {
+                var discountedSpan = discountedSpans[i];
+                var discountedValue = discountedSpan.textContent.trim();
+                var discountedInt = parseFloat(discountedValue);
+                var subtractedValue = Math.floor(Math.random() * ((discountedInt - 10) - 10 + 1)) + 10;
+                var newValue = discountedInt - subtractedValue;
+                discountedSpan.textContent = newValue.toFixed(2);
+            }
+
+            var element = document.getElementById('star-rating');
+            var value = parseFloat(element.textContent);
+            var numberOfStars = Math.round(value);
+            element.innerHTML = '';
+            for (var i = 0; i < numberOfStars; i++) {
+                element.innerHTML += '⭐ ';
+            } 
+            var black_stars= 5- numberOfStars;
+            for (var i = 0; i < black_stars; i++) {
+                element.innerHTML += '☆ ';
+            } 
+        });
+    </script>
+    <script>
+         //script to handle the value of quantity
+        document.addEventListener('DOMContentLoaded', function() {
+            const quantityInput = document.getElementById('quantity');
+            const increaseButton = document.querySelector('.ref-increase');
+            const decreaseButton = document.querySelector('.ref-decrease');
+            const maxQuantity = 30;
+            const minQuantity = 1;
+
+            increaseButton.addEventListener('click', function() {
+                let currentValue = parseInt(quantityInput.value);
+                if (currentValue < maxQuantity) {
+                    quantityInput.value = currentValue + 1;
+                }
+            });
+
+            decreaseButton.addEventListener('click', function() {
+                let currentValue = parseInt(quantityInput.value);
+                if (currentValue > minQuantity) {
+                    quantityInput.value = currentValue - 1;
+                }
+            });
+        });
+    </script>
+{% endblock %}

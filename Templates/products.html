@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <section class="py-5">
+        <div class="container py-5">
+            <div class="row mb-4 mb-lg-5">
+                <div class="col-md-8 col-xl-6 text-center mx-auto">
+                    <h2 class="fw-bold">Products</h2>
+                    <p class="text-muted">No matter the project, our team can handle it.&nbsp;</p>
+                </div>
+            </div>
+            {% if alert_string %}
+            <div class="alert alert-primary" role="alert">
+                <a href="{% url 'shopping_cart' %}">{{alert_string}}</a>
+            </div>
+            {% endif %}
+            <div class="row mx-auto">
+                <div class="col">
+                    <div data-reflow-type="product-list" data-reflow-layout="cards" data-reflow-order="date_desc" data-reflow-product-link="product.html?product={id}">
+                        <div class="reflow-product-list ref-cards">
+                            <div class="ref-products">
+                                {% for product in products %}
+                                <a href="" class="ref-product">
+                                    <div class="ref-media">
+                                        <img class="ref-image" src="{{ product.image }}"  loading="lazy">
+                                        <div class="ref-sale-badge">SALE</div>
+                                    </div>
+                                    <div class="ref-product-data">
+                                        <div class="ref-product-info">
+                                            <h5 class="ref-name">{{product.name}}</h5>
+                                            <p class="ref-excerpt">{{product.description}}</p>
+                                        </div>
+                                        <strong class="ref-price ref-on-sale"><s class="ref-original-price">${{product.price}}</s>$<span class="discounted">{{product.price}}</span></strong>
+                                    </div>
+                                    <div>
+                                        <form action="{% url 'product' product.id %}">
+                                            {% csrf_token %}
+                                            <button type="submit" class="btn btn-outline-primary">Check it!</button>
+                                        </form> 
+                                    </div>
+                                </a>
+                                {%endfor%}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="https://cdn.reflowhq.com/v2/toolkit.min.js"></script>
+    <script src="{% static 'js/bs-init.js' %}"></script>
+    <script src="{% static 'js/bold-and-bright.js' %}"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var discountedSpans = document.getElementsByClassName("discounted");
+            for (var i = 0; i < discountedSpans.length; i++) {
+                var discountedSpan = discountedSpans[i];
+                var discountedValue = discountedSpan.textContent.trim();
+                var discountedInt = parseFloat(discountedValue);
+                var subtractedValue = Math.floor(Math.random() * ((discountedInt - 10) - 10 + 1)) + 10;
+                var newValue = discountedInt - subtractedValue;
+                discountedSpan.textContent = newValue.toFixed(2);
+            }
+        });
+    </script>
+{% endblock %}
